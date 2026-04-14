@@ -41,7 +41,7 @@ struct Char: Decodable {
         let deathDecoder = JSONDecoder()
         deathDecoder.keyDecodingStrategy = .convertFromSnakeCase
         
-        let deathData = try! Data(contentsOf: Bundle.main.url(forResource: "sampldeath", withExtension: "json")!)
+        let deathData = try! Data(contentsOf: Bundle.main.url(forResource: "sampledeath", withExtension: "json")!)
         death = try deathDecoder.decode(Death.self, from: deathData)
     }
 }
