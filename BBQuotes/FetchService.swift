@@ -8,7 +8,7 @@
 import Foundation
 
 struct FetchService {
-    enum FetchError: Error {
+    private enum FetchError: Error {
         case badReponse
     }
     
