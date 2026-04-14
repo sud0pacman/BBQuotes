@@ -25,23 +25,31 @@ struct FetchService {
         
         // Handle response
         guard let response = response as? HTTPURLResponse, response.statusCode == 200 else {
+            if let response = response as? HTTPURLResponse {
+                print("❌ Status code: \(response.statusCode) for URL: \(fetchURL)")
+            }
             throw FetchError.badReponse
         }
         
         // Decode data
-        let quote = try JSONDecoder().decode(Quote.self, from: data)
+        let decoder = JSONDecoder()
+        decoder.keyDecodingStrategy = .convertFromSnakeCase
+        let quote = try decoder.decode(Quote.self, from: data)
         
         // Return quote
         return quote
     }
     
     func fetchCharacter(_ name: String) async throws  -> Char {
-        let characterURL = baseURL.appending(path: "character")
+        let characterURL = baseURL.appending(path: "characters")
         let fetchURL = characterURL.appending(queryItems: [URLQueryItem(name: "name", value: name)])
         
         let (data, response) = try await URLSession.shared.data(from: fetchURL)
         
         guard let response = response as? HTTPURLResponse, response.statusCode == 200 else {
+            if let response = response as? HTTPURLResponse {
+                print("❌ Status code: \(response.statusCode) for URL: \(fetchURL)")
+            }
             throw FetchError.badReponse
         }
         
@@ -58,6 +66,9 @@ struct FetchService {
         let (data, response) = try await URLSession.shared.data(from: fetchURL)
         
         guard let response = response as? HTTPURLResponse, response.statusCode == 200 else {
+            if let response = response as? HTTPURLResponse {
+                print("❌ Status code: \(response.statusCode) for URL: \(fetchURL)")
+            }
             throw FetchError.badReponse
         }
         

@@ -50,6 +50,7 @@ class ViewModel {
             
             status = .success
         } catch {
+            print(error.localizedDescription)
             status = .failed(error: error)
         }
     }

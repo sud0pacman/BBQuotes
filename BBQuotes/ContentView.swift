@@ -16,7 +16,7 @@ struct ContentView: View {
             }
             
             Tab("Better Call Saul", systemImage: "briefcase") {
-                Text("Better Call Saul View")
+                QuoteView(show: "Better Call Saul")
                     .toolbarBackgroundVisibility(.visible, for: .tabBar)
             }
         }
