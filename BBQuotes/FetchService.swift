@@ -85,7 +85,7 @@ struct FetchService {
         return nil
     }
     
-    func fetchEpisode(from show: String) async throws  -> Episode {
+    func fetchEpisode(from show: String) async throws  -> Episode? {
         let characterURL = baseURL.appending(path: "episodes")
         let fetchURL = characterURL.appending(queryItems: [URLQueryItem(name: "production", value: show)])
         
@@ -102,6 +102,6 @@ struct FetchService {
         decoder.keyDecodingStrategy = .convertFromSnakeCase
         let episodes = try decoder.decode([Episode].self, from: data)
         
-        return episodes.randomElement()!
+        return episodes.randomElement()
     }
 }

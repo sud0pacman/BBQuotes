@@ -65,11 +65,9 @@ class ViewModel {
         status = .fetching
         
         do {
-            episode = try await fetcher.fetchEpisode(from: show)
-            
-//            if let unwrappedEpisode = try await fetcher.fetchEpisode(from: show) {
-//                episode = unwrappedEpisode
-//            }
+            if let unwrappedEpisode = try await fetcher.fetchEpisode(from: show) {
+                episode = unwrappedEpisode
+            }
             
             status = .successEpisode
         } catch {
