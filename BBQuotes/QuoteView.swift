@@ -11,6 +11,8 @@ struct QuoteView: View {
     let vm = ViewModel()
     let show: String
     
+    @State var showCharacterInfo: Bool = false
+    
     var body: some View {
         GeometryReader { geo in
             ZStack {
@@ -54,6 +56,9 @@ struct QuoteView: View {
                         }
                         .frame(width: geo.size.width / 1.1, height: geo.size.height / 1.8)
                         .clipShape(.rect(cornerRadius: 50))
+                        .onTapGesture {
+                            showCharacterInfo.toggle()
+                        }
                         
                         Spacer()
                     case .failed(let error):
@@ -80,10 +85,13 @@ struct QuoteView: View {
             .frame(width: geo.size.width, height: geo.size.height)
         }
         .ignoresSafeArea()
+        .sheet(isPresented: $showCharacterInfo) {
+            CharacterView(character: vm.character, show: show)
+        }
     }
 }
 
 #Preview {
-    QuoteView(show: "Breaking bad")
+    QuoteView(show: "Breaking Bad")
         .preferredColorScheme(.dark)
 }
