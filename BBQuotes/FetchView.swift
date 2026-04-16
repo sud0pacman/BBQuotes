@@ -28,7 +28,7 @@ struct FetchView: View {
                         EmptyView()
                     case .fetching:
                         ProgressView()
-                    case .success:
+                    case .successQuote:
                         Text("\"\(vm.quote.quote)\"")
                             .minimumScaleFactor(0.5)
                             .multilineTextAlignment(.center)
@@ -60,23 +60,41 @@ struct FetchView: View {
                             showCharacterInfo.toggle()
                         }
                         
-                        Spacer()
+                        Spacer(minLength: 20)
+                    case .successEpisode:
+                        EpisodeView(episode: vm.episode)
                     case .failed(let error):
                         Text(error.localizedDescription)
                     }
                     
-                    
-                    Button("Get Random Quote") {
-                        Task {
-                            await vm.getQuoteData(for: show)
+                    HStack {
+                        Button("Get Random \nQuote") {
+                            Task {
+                                await vm.getQuoteData(for: show)
+                            }
                         }
+                        .font(.headline)
+                        .foregroundStyle(.white)
+                        .padding()
+                        .background(Color("\(show.removeSpaces())Button"))
+                        .clipShape(.rect(cornerRadius: 7))
+                        .shadow(color: Color("\(show.removeSpaces())Shadow"), radius: 2)
+                        
+                        Spacer()
+                        
+                        Button("Get Random \nEpisode") {
+                            Task {
+                                await vm.getEpisodeData(for: show)
+                            }
+                        }
+                        .font(.headline)
+                        .foregroundStyle(.white)
+                        .padding()
+                        .background(Color("\(show.removeSpaces())Button"))
+                        .clipShape(.rect(cornerRadius: 7))
+                        .shadow(color: Color("\(show.removeSpaces())Shadow"), radius: 2)
                     }
-                    .font(.title)
-                    .foregroundStyle(.white)
-                    .padding()
-                    .background(Color("\(show.removeSpaces())Button"))
-                    .clipShape(.buttonBorder)
-                    .shadow(color: Color("\(show.removeSpaces())Shadow"), radius: 2)
+                    .padding(.horizontal, 30)
                     
                     Spacer(minLength: 95)
                 }

@@ -13,7 +13,7 @@ struct Episode: Decodable {
     let image: URL
     let synopsis: String
     let writtenBy: String
-    let directedby: String
+    let directedBy: String
     let airDate: String
     
     var seasonEpisode: String {
