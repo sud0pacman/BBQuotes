@@ -68,7 +68,7 @@ struct QuoteView: View {
                     
                     Button("Get Random Quote") {
                         Task {
-                            await vm.getData(for: show)
+                            await vm.getQuoteData(for: show)
                         }
                     }
                     .font(.title)
