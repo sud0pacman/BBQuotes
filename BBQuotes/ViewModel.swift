@@ -42,6 +42,10 @@ class ViewModel {
         self.quote = quote
         self.character = character
         self.episode = episode
+        
+        Task {
+            await getQuoteData(for: Constants.bbName)
+        }
     }
     
     func getQuoteData(for show: String) async {
