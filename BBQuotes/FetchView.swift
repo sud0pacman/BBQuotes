@@ -39,7 +39,7 @@ struct FetchView: View {
                             .padding()
                         
                         ZStack(alignment: .bottom) {
-                            AsyncImage(url: vm.character.images[0]) { image in
+                            AsyncImage(url: vm.character.images.randomElement()) { image in
                                 image
                                     .resizable()
                                     .scaledToFill()
