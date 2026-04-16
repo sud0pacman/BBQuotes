@@ -9,6 +9,7 @@ import SwiftUI
 
 struct CharacterView: View {
     let character: Char
+    let quote: Quote
     let show: String
     
     var body: some View {
@@ -48,6 +49,10 @@ struct CharacterView: View {
                             Text("\(character.name) Character Info")
                             
                             Text("Born: \(character.birthday)")
+                            
+                            Divider()
+                            
+                            Text("Quote: \"\(quote.quote)\"")
                             
                             Divider()
                             
@@ -117,5 +122,5 @@ struct CharacterView: View {
 }
 
 #Preview {
-    CharacterView(character: ViewModel().character, show: Constants.bbName)
+    CharacterView(character: ViewModel().character, quote: ViewModel().quote, show: Constants.bbName)
 }

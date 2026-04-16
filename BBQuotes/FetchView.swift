@@ -105,7 +105,7 @@ struct FetchView: View {
         .ignoresSafeArea()
         .toolbarBackgroundVisibility(.visible, for: .tabBar)
         .sheet(isPresented: $showCharacterInfo) {
-            CharacterView(character: vm.character, show: show)
+            CharacterView(character: vm.character, quote: vm.quote, show: show)
         }
     }
 }
