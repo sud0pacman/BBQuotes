@@ -1,5 +1,5 @@
 //
-//  QuoteView.swift
+//  FetchView.swift
 //  BBQuotes
 //
 //  Created by Muhammad on 14/04/26.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct QuoteView: View {
+struct FetchView: View {
     let vm = ViewModel()
     let show: String
     
@@ -93,6 +93,6 @@ struct QuoteView: View {
 }
 
 #Preview {
-    QuoteView(show: "Breaking Bad")
+    FetchView(show: "Breaking Bad")
         .preferredColorScheme(.dark)
 }
